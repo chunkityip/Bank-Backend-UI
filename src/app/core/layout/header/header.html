@@ -1,0 +1,47 @@
+<div class="top-bar">
+  <!-- Hamburger: mobile only. aria-controls only points at the menu while it exists -->
+  <button
+    type="button"
+    class="menu-button"
+    aria-label="Open menu"
+    [attr.aria-expanded]="menuOpen()"
+    [attr.aria-controls]="menuOpen() ? 'mobile-menu' : null"
+    (click)="menuToggle.emit()"
+  >
+    <span class="bar"></span>
+    <span class="bar"></span>
+    <span class="bar"></span>
+  </button>
+
+  <a routerLink="/accounts" class="brand">
+    <span class="brand-mark" aria-hidden="true">{{ appMark }}</span>
+    <span>{{ appName }}</span>
+  </a>
+
+  <!-- Primary navigation: desktop only -->
+  <nav class="primary-nav" aria-label="Main navigation">
+    @for (item of navItems; track item.path) {
+      <a [routerLink]="item.path" routerLinkActive="active" ariaCurrentWhenActive="page">
+        {{ item.label }}
+      </a>
+    }
+  </nav>
+
+  <div class="actions">
+    <!-- TODO(BANK-602): wire Sign out to AuthService; notifications/help are not in the roadmap yet -->
+    <button type="button" class="icon-button" aria-label="Notifications">
+      <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+        <path d="M18 8a6 6 0 0 0-12 0c0 7-3 9-3 9h18s-3-2-3-9" />
+        <path d="M13.7 21a2 2 0 0 1-3.4 0" />
+      </svg>
+    </button>
+    <button type="button" class="icon-button" aria-label="Help">
+      <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+        <circle cx="12" cy="12" r="9" />
+        <path d="M9.5 9a2.5 2.5 0 0 1 4.9.7c0 1.6-2.4 2.3-2.4 2.3" />
+        <path d="M12 17h.01" />
+      </svg>
+    </button>
+    <button type="button" class="sign-out">Sign out</button>
+  </div>
+</div>

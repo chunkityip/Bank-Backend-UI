@@ -1,0 +1,70 @@
+@if (open()) {
+  <button
+    type="button"
+    class="backdrop"
+    tabindex="-1"
+    aria-label="Close menu"
+    animate.enter="fade-in"
+    animate.leave="fade-out"
+    (click)="closed.emit()"
+  ></button>
+
+  <div
+    id="mobile-menu"
+    class="drawer"
+    role="dialog"
+    aria-modal="true"
+    aria-label="Main menu"
+    cdkTrapFocus
+    [cdkTrapFocusAutoCapture]="true"
+    animate.enter="slide-in"
+    animate.leave="slide-out"
+  >
+    <div class="drawer-header">
+      <span class="brand">{{ appName }}</span>
+      <button type="button" class="close-button" aria-label="Close menu" (click)="closed.emit()">
+        <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+          <path d="M6 6l12 12M18 6 6 18" />
+        </svg>
+      </button>
+    </div>
+
+    <nav aria-label="Mobile navigation">
+      <ul>
+        @for (section of navItems; track section.path) {
+          <li>
+            <a
+              class="section-link"
+              [routerLink]="section.path"
+              routerLinkActive="active"
+              (click)="closed.emit()"
+            >
+              {{ section.label }}
+            </a>
+
+            <!-- Sub-links only when there is more than one (a single one would repeat the section) -->
+            @if (section.children; as children) {
+              @if (children.length > 1) {
+                <ul class="children">
+                  @for (child of children; track child.path) {
+                    <li>
+                      <a
+                        [routerLink]="child.path"
+                        routerLinkActive="active"
+                        [routerLinkActiveOptions]="exactMatch"
+                        ariaCurrentWhenActive="page"
+                        (click)="closed.emit()"
+                      >
+                        {{ child.label }}
+                      </a>
+                    </li>
+                  }
+                </ul>
+              }
+            }
+          </li>
+        }
+      </ul>
+    </nav>
+  </div>
+}

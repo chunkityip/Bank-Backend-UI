@@ -1,0 +1,147 @@
+$drawer-width: 280px;
+$duration: 200ms;
+
+// ---------- Backdrop ----------
+.backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: var(--z-backdrop);
+  border: 0;
+  background: rgb(0 0 0 / 45%);
+  cursor: pointer;
+}
+
+// ---------- Drawer ----------
+.drawer {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  z-index: var(--z-drawer);
+  width: $drawer-width;
+  max-width: 85vw;
+  overflow-y: auto;
+  background: var(--color-surface);
+  box-shadow: 4px 0 16px rgb(0 0 0 / 20%);
+}
+
+.drawer-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 56px;
+  padding: 0 8px 0 20px;
+  background: var(--color-header);
+  color: var(--color-on-header);
+}
+
+.brand {
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.close-button {
+  display: grid;
+  place-items: center;
+  width: 40px;
+  height: 40px;
+  border: 0;
+  border-radius: 50%;
+  background: transparent;
+  cursor: pointer;
+
+  &:hover {
+    background: rgb(255 255 255 / 12%);
+  }
+
+  svg {
+    width: 22px;
+    height: 22px;
+    stroke: var(--color-on-header);
+    stroke-width: 2;
+    stroke-linecap: round;
+  }
+}
+
+// ---------- Links ----------
+ul {
+  margin: 0;
+  padding: 8px 0;
+  list-style: none;
+}
+
+a {
+  display: block;
+  padding: 12px 20px;
+  color: var(--color-text);
+  text-decoration: none;
+
+  &:hover {
+    background: var(--color-bg);
+  }
+}
+
+.section-link {
+  font-weight: 600;
+
+  &.active {
+    padding-left: 17px;
+    border-left: 3px solid var(--color-header);
+  }
+}
+
+.children {
+  padding: 0 0 8px;
+
+  a {
+    padding: 8px 20px 8px 36px;
+    color: var(--color-muted);
+    font-size: 14px;
+
+    &.active {
+      color: var(--color-primary);
+      font-weight: 600;
+    }
+  }
+}
+
+// ---------- Enter / leave animations (Angular 20.2+ animate.enter / animate.leave) ----------
+.slide-in {
+  animation: slide-in $duration ease-out;
+}
+
+.slide-out {
+  animation: slide-out $duration ease-in forwards;
+}
+
+.fade-in {
+  animation: fade-in $duration ease-out;
+}
+
+.fade-out {
+  animation: fade-out $duration ease-in forwards;
+}
+
+@keyframes slide-in {
+  from {
+    transform: translateX(-100%);
+  }
+}
+
+@keyframes slide-out {
+  to {
+    transform: translateX(-100%);
+  }
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+}
+
+@keyframes fade-out {
+  to {
+    opacity: 0;
+  }
+}

@@ -1,32 +1,72 @@
-/* Global styles. Component styles live in each component's own .css file. */
+
 :root {
   --color-text: #1f2937;
   --color-muted: #6b7280;
   --color-bg: #f9fafb;
+  --color-surface: #fff;
+  --color-border: #e5e7eb;
+  --color-input-border: #cbd5e1;
+  --color-header: #0b1f3f;
+  --color-on-header: #fff;
+  --color-primary: #1e3a8a;
+  --color-primary-soft: #e0e7ff;
+  --color-focus: #3b82f6;
+  --color-error: #b91c1c;
+
+  --z-header: 30;
+  --z-backdrop: 40;
+  --z-drawer: 50;
 }
 
-* {
+*,
+*::before,
+*::after {
   box-sizing: border-box;
 }
 
 body {
   margin: 0;
-  font-family:
-    system-ui,
-    -apple-system,
-    'Segoe UI',
-    Roboto,
-    sans-serif;
+  font-family: system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
   color: var(--color-text);
   background: var(--color-bg);
 }
 
-.page {
-  padding: 24px 16px;
-  max-width: 960px;
-  margin: 0 auto;
+
+button,
+input,
+select,
+textarea {
+  font: inherit;
 }
 
-.page p {
-  color: var(--color-muted);
+
+:focus-visible {
+  outline: 2px solid var(--color-focus);
+  outline-offset: 2px;
+}
+
+
+.scroll-locked {
+  overflow: hidden;
+}
+
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+
+.page {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 24px 16px;
+
+  p {
+    color: var(--color-muted);
+  }
 }

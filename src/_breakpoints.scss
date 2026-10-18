@@ -1,0 +1,17 @@
+// Single source of truth for responsive breakpoints.
+// Keep in sync with BREAKPOINTS in src/app/core/layout/breakpoints.ts
+// Usage in a component: @use 'breakpoints' as bp;  then  @include bp.mobile { ... }
+
+$mobile-max: 767px;
+
+@mixin mobile {
+  @media (max-width: $mobile-max) {
+    @content;
+  }
+}
+
+@mixin desktop {
+  @media (min-width: ($mobile-max + 1px)) {
+    @content;
+  }
+}

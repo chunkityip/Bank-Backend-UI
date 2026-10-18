@@ -1,0 +1,150 @@
+@use 'breakpoints' as bp;
+
+.top-bar {
+  display: flex;
+  align-items: center;
+  height: 56px;
+  padding: 0 16px;
+  background: var(--color-header);
+  color: var(--color-on-header);
+}
+
+// ---------- Brand ----------
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-right: 24px;
+  color: var(--color-on-header);
+  font-size: 18px;
+  font-weight: 600;
+  text-decoration: none;
+
+  @include bp.mobile {
+    margin-right: 0;
+  }
+}
+
+.brand-mark {
+  display: grid;
+  place-items: center;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background: var(--color-on-header);
+  color: var(--color-header);
+  font-size: 13px;
+  font-weight: 700;
+}
+
+// ---------- Primary nav (tabs with white underline) ----------
+.primary-nav {
+  display: flex;
+  align-self: stretch;
+
+  @include bp.mobile {
+    display: none;
+  }
+
+  a {
+    display: flex;
+    align-items: center;
+    padding: 0 14px;
+    border-top: 3px solid transparent; // balances border-bottom so text stays centered
+    border-bottom: 3px solid transparent;
+    color: rgb(255 255 255 / 80%);
+    font-size: 15px;
+    font-weight: 500;
+    text-decoration: none;
+    white-space: nowrap;
+
+    &:hover {
+      color: var(--color-on-header);
+      background: rgb(255 255 255 / 8%);
+    }
+
+    &.active {
+      color: var(--color-on-header);
+      border-bottom-color: var(--color-on-header);
+    }
+  }
+}
+
+// ---------- Right side actions ----------
+.actions {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  margin-left: auto;
+}
+
+%round-button {
+  display: grid;
+  place-items: center;
+  width: 40px;
+  height: 40px;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+
+  &:hover {
+    background: rgb(255 255 255 / 12%);
+  }
+}
+
+.icon-button {
+  @extend %round-button;
+  border-radius: 50%;
+
+  svg {
+    width: 22px;
+    height: 22px;
+    fill: none;
+    stroke: var(--color-on-header);
+    stroke-width: 1.8;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+}
+
+.sign-out {
+  margin-left: 8px;
+  padding: 8px 12px;
+  border: 0;
+  background: transparent;
+  color: var(--color-on-header);
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+
+  &:hover {
+    text-decoration: underline;
+  }
+
+  @include bp.mobile {
+    margin-left: 0;
+    padding: 8px;
+  }
+}
+
+// ---------- Hamburger (mobile only) ----------
+.menu-button {
+  @extend %round-button;
+  display: none;
+  margin-right: 8px;
+  border-radius: 8px;
+
+  @include bp.mobile {
+    display: grid;
+    align-content: center;
+    gap: 4px;
+  }
+}
+
+.bar {
+  display: block;
+  width: 20px;
+  height: 2px;
+  background: var(--color-on-header);
+  border-radius: 1px;
+}

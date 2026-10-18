@@ -27,11 +27,25 @@ module.exports = tseslint.config(
       // Keep HTML, CSS and TS in separate files
       '@angular-eslint/component-max-inline-declarations': ['error', { template: 0, styles: 0 }],
       '@typescript-eslint/no-explicit-any': 'error',
+      '@angular-eslint/prefer-on-push-component-change-detection': 'error',
+      '@angular-eslint/prefer-signals': 'error',
+      '@angular-eslint/prefer-inject': 'error',
+      '@angular-eslint/prefer-output-emitter-ref': 'error',
+      '@angular-eslint/prefer-standalone': 'error',
+      '@typescript-eslint/explicit-function-return-type': ['error', { allowExpressions: true }],
+      '@typescript-eslint/member-ordering': [
+        'error',
+        { default: ['signature', 'field', 'constructor', 'method'] },
+      ],
     },
   },
   {
     files: ['**/*.html'],
     extends: [...angular.configs.templateRecommended, ...angular.configs.templateAccessibility],
-    rules: {},
+    rules: {
+      '@angular-eslint/template/prefer-control-flow': 'error',
+      '@angular-eslint/template/prefer-self-closing-tags': 'error',
+      '@angular-eslint/template/prefer-ngsrc': 'error',
+    },
   },
 );

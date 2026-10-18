@@ -1,0 +1,29 @@
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: var(--z-header);
+}
+
+// Hidden until it receives keyboard focus (first Tab on the page)
+.skip-link {
+  position: absolute;
+  top: 8px;
+  left: 8px;
+  z-index: var(--z-drawer);
+  padding: 8px 16px;
+  border: 0;
+  border-radius: 4px;
+  background: var(--color-surface);
+  color: var(--color-primary);
+  font-weight: 600;
+  cursor: pointer;
+  transform: translateY(-200%);
+
+  &:focus {
+    transform: translateY(0);
+  }
+}
+
+main:focus {
+  outline: none; // focused programmatically by the skip link, no ring needed
+}

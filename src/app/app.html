@@ -1,4 +1,12 @@
-<!-- BANK-102 adds the header and side nav around this -->
-<main>
+<button type="button" class="skip-link" (click)="main.focus()">Skip to main content</button>
+
+<div class="site-header">
+  <app-header [menuOpen]="menuOpen()" (menuToggle)="toggleMenu()" />
+  <app-sub-nav />
+</div>
+
+<app-sidenav [open]="menuOpen()" (closed)="closeMenu()" />
+
+<main #main tabindex="-1">
   <router-outlet />
 </main>

@@ -1,0 +1,47 @@
+<div class="sub-nav">
+  <nav class="sub-links" aria-label="Section navigation">
+    @for (link of links(); track link.path) {
+      <a
+        [routerLink]="link.path"
+        routerLinkActive="active"
+        [routerLinkActiveOptions]="exactMatch"
+        ariaCurrentWhenActive="page"
+      >
+        {{ link.label }}
+      </a>
+    }
+  </nav>
+
+  <form
+    class="search"
+    role="search"
+    [formGroup]="searchForm"
+    [class.invalid]="showSearchError()"
+    (ngSubmit)="search()"
+  >
+    <input
+      type="search"
+      formControlName="accountNumber"
+      placeholder="Search account number"
+      aria-label="Search account number"
+      inputmode="numeric"
+      autocomplete="off"
+      [attr.maxlength]="accountNumberLength"
+      [attr.aria-invalid]="showSearchError()"
+      [attr.aria-describedby]="showSearchError() ? 'search-error' : null"
+      (input)="clearSearchError()"
+    />
+    <button type="submit" class="search-button" aria-label="Search">
+      <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+        <circle cx="11" cy="11" r="7" />
+        <path d="m20 20-3.5-3.5" />
+      </svg>
+    </button>
+
+    @if (showSearchError()) {
+      <p id="search-error" class="search-error" role="alert">
+        Enter a {{ accountNumberLength }}-digit account number
+      </p>
+    }
+  </form>
+</div>
